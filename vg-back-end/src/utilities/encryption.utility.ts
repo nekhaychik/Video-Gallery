@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 export default class Encryption {
   static async generateHash(password: string, saltRounds: number): Promise<string> {
     return new Promise((resolve, reject) => {
-      bcrypt.hash(password, saltRounds, (err: any, hash: string) => {
+      bcrypt.hash(password, saltRounds, (err: (Error | undefined), hash: string) => {
         if (!err) {
           resolve(hash);
         }
@@ -15,8 +15,8 @@ export default class Encryption {
   }
 
   static async verifyHash(password: string, hash: string): Promise<boolean> {
-    return new Promise((resolve, reject) => {
-      bcrypt.compare(password, hash, (err: any, result: string) => {
+    return new Promise((resolve) => {
+      bcrypt.compare(password, hash, (err: (Error | undefined), result: boolean) => {
         if (result) {
           resolve(true);
         }
@@ -25,10 +25,10 @@ export default class Encryption {
     });
   }
 
-  static async generateCookie(key: string, value: string) {
+  static generateCookie(key: string, value: string): string {
     const data: { [key: string]: string } = {};
     data[key] = value;
-    return await jwt.sign({ data }, constants.APPLICATION.env.authSecret, {
+    return jwt.sign({ data }, constants.APPLICATION.env.authSecret, {
       expiresIn: constants.APPLICATION.timers.userCookieExpiry,
     });
   };

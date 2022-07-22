@@ -1,5 +1,5 @@
 import * as bodyParser from 'body-parser';
-import express, { Express } from 'express';
+import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 
@@ -8,9 +8,8 @@ import constants from '../constants';
 import indexRoute from '../routes/index.route';
 import joiErrorHandler from '../middlewares/joi-error-handler.middleware';
 import { notFoundErrorHandler, errorHandler } from '../middlewares/api-error-handler.middleware';
-import { ICorsOptions } from '../interfaces/common.interface';
 
-const app: Express = express();
+const app = express();
 
 app.use((req, res, next) => {
   const origin: string = req.get('origin');
@@ -27,7 +26,7 @@ app.use((req, res, next) => {
   }
 });
 
-const corsOption: ICorsOptions = {
+const corsOption = {
   origin: [process.env.FRONTEND_BASE_URL],
   methods: 'GET,POST,HEAD,OPTIONS,PUT,PATCH,DELETE',
   credentials: true,

@@ -11,11 +11,13 @@ import { parseUser } from './jwt-util';
 })
 export class AuthenticationService {
 
+  private url = "http://localhost:3000";
+
   constructor(private http: HttpClient) { }
 
   /** Send basic credentials to login endpoint. */
   public async login(userData: Login): Promise<LoginResult> {
-    return this.loginPost('/login', userData);
+    return this.loginPost(this.url + '/login', userData);
   }
 
   /** Send user info from 3rd party provider to external login endpoint. */
@@ -25,7 +27,7 @@ export class AuthenticationService {
 
   /** Send user info to register endpoint. */
   public async register(userData: Register): Promise<LoginResult> {
-    return this.loginPost('/register', userData);
+    return this.loginPost(this.url + '/register', userData);
   }
 
   protected async loginPost(endpoint: string, userData: any): Promise<LoginResult> {

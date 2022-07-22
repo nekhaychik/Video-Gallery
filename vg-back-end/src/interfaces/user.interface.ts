@@ -1,5 +1,5 @@
 // Interfaces
-import { IBaseQueryParams } from './common.interface';
+import { IBaseQueryParams } from 'common.interface';
 
 export interface IBasicUser {
   id: number;

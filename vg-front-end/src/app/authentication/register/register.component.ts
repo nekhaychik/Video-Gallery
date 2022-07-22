@@ -24,14 +24,15 @@ export class RegisterComponent {
     private userService: UserService,
     private router: Router) {
     this.registrationForm = this.fb.group({
-      given_name: ['', Validators.required],
-      family_name: ['', Validators.nullValidator],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.nullValidator],
       email: ['', Validators.required],
       password: ['', Validators.required]
     });
   }
 
   async tryRegister() {
+    console.log(this.registrationForm.value as Register)
     const response = await this.authentication.register(this.registrationForm.value as Register);
     if (!response.error) {
       this.userService.setCurrentUser(response.user!);

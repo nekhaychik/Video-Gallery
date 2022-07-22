@@ -19,7 +19,7 @@ beforeAll(async () => {
   };
   await userService.create(user);
 
-  token = await Encryption.generateCookie(constants.COOKIE.KEY_USER_ID, '1');
+  token = Encryption.generateCookie(constants.COOKIE.KEY_USER_ID, '1');
 });
 
 afterAll(() => {

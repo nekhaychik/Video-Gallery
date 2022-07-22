@@ -1,5 +1,3 @@
-import { Response } from 'express';
-
 export interface IDeleteById {
   id: number;
 }
@@ -31,10 +29,4 @@ export interface IPagination {
   currentPage: number;
   nextPage: number | null;
   totalItems: number;
-}
-
-export interface ICorsOptions {
-  origin: string[];
-  methods: string;
-  credentials: boolean;
 }

@@ -2,7 +2,7 @@ import { Response } from 'express';
 import httpStatusCodes from 'http-status-codes';
 
 // Interfaces
-import { ICookie, IPagination, IOverrideRequest } from '../interfaces/common.interface';
+import { ICookie, IPagination, IOverrideRequest } from 'common.interface';
 
 // Errors
 import { StringError } from '../errors/string.error';
@@ -10,7 +10,7 @@ import { StringError } from '../errors/string.error';
 export default class ApiResponse {
   static result = (
     res: Response,
-    data: object,
+    data: any,
     status: number = 200,
     cookie: ICookie = null,
     pagination: IPagination = null,

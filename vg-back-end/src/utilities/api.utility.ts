@@ -2,7 +2,6 @@ import { Request } from 'express';
 
 // Entities
 import { User } from '../entities/user/user.entity';
-import { BaseEntity } from '../entities/base/base.entity';
 
 // Interfaces
 import { IPagination } from 'common.interface';
@@ -28,10 +27,10 @@ export default class ApiUtility {
     return null;
   }
 
-  static sanitizeData(data: BaseEntity): {} {
-    const { createdAt, updatedAt, ...basicData }  = data;
-    return basicData;
-  }
+  // static sanitizeData(data: BaseEntity): {} {
+  //   const { createdAt, updatedAt, ...basicData }  = data;
+  //   return basicData;
+  // }
 
   static sanitizeUser(user: User): IBasicUser {
     const { password, isDeleted, ...basicUser } = user;
@@ -59,17 +58,16 @@ export default class ApiUtility {
     return limit * page - limit;
   }
 
-  static getPagination(total: number, limit: number, currentPage: number): { pagination: IPagination } {
+  static getPagination(total: number, limit: number, currentPage: number): IPagination | null {
     if (total) {
-      const pagination: IPagination = {
+      return {
         currentPage,
         totalPages: Math.ceil(total / limit),
         previousPage: currentPage <= 1 ? null : currentPage - 1,
         nextPage: total - (currentPage * limit) > 0 ? currentPage + 1 : null,
         totalItems: total,
       };
-      return { pagination };
     }
-    return { pagination: null };
+    return null;
   }
 }

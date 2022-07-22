@@ -10,7 +10,6 @@ export interface IError {
 export const notFoundErrorHandler = (
   req: express.Request,
   res: express.Response,
-  next: express.NextFunction,
 ) => {
   res.status(HttpStatus.NOT_FOUND).json({
     success: false,
@@ -25,7 +24,6 @@ export const errorHandler = (
   err: IError,
   req: express.Request,
   res: express.Response,
-  next: express.NextFunction,
 ) => {
   res.status(err.status || HttpStatus.INTERNAL_SERVER_ERROR).json({
     success: false,

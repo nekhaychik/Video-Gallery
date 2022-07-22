@@ -1,6 +1,6 @@
-const winston: any = require('winston');
+const winston = require('winston');
 
-const logger: any = winston.createLogger({
+const logger = winston.createLogger({
   level: 'info',
   format: winston.format.json(),
   defaultMeta: { timestamp: new Date() },
