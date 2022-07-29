@@ -1,7 +1,13 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 // Entities
 import { BaseEntity } from '../base/base.entity';
+import { User } from '../user/user.entity';
 
 @Entity('video', {})
 export class Video extends BaseEntity {
@@ -12,8 +18,10 @@ export class Video extends BaseEntity {
   @Column({ nullable: false })
   path: string;
 
-  toJSON() {
-    return this;
-  }
+  @Column({ nullable: false })
+  authorId: number;
+
+  @ManyToOne(() => User, (user: User) => user.id)
+  author: User;
 
 }

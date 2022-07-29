@@ -1,6 +1,9 @@
 import { Request } from 'express'
 import multer, { FileFilterCallback } from 'multer'
 
+// Utilities
+import DateTimeUtility from '../utilities/date-time.utility';
+
 type DestinationCallback = (error: Error | null, destination: string) => void
 type FileNameCallback = (error: Error | null, filename: string) => void
 
@@ -18,8 +21,8 @@ export const fileStorage = multer.diskStorage({
       file: Express.Multer.File,
       callback: FileNameCallback,
   ): void => {
-    const { originalname } = file;
-    callback(null, originalname);
+    const date: string = DateTimeUtility.getCurrentTimeStamp();
+    callback(null, `${date}-${file.originalname}`);
   },
 });
 
@@ -40,4 +43,4 @@ export const fileFilter = (
   }
 };
 
-export const upload = multer({ fileFilter, storage: fileStorage });
+export const multerUploader = multer({ fileFilter, storage: fileStorage });
