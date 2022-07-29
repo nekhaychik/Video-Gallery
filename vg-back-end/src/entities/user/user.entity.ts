@@ -1,7 +1,14 @@
-import { Column, Entity, PrimaryGeneratedColumn, Unique } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  Unique,
+} from 'typeorm';
 
 // Entities
 import { BaseEntity } from '../base/base.entity';
+import { Role } from '../role/role.entity';
 
 @Entity('user', { orderBy: { id: 'DESC' } })
 export class User extends BaseEntity {
@@ -24,6 +31,12 @@ export class User extends BaseEntity {
 
   @Column({ default: false })
   isDeleted: boolean;
+
+  @Column({ nullable: false })
+  roleId: number;
+
+  @ManyToOne(() => Role, (role: Role) => role.id)
+  role: Role;
 
   toJSON() {
     delete this.isDeleted;
