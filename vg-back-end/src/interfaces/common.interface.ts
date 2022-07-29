@@ -2,6 +2,10 @@ export interface IDeleteById {
   id: number;
 }
 
+export interface IUpdateById {
+  id: number;
+}
+
 export interface IDetailById {
   id: number;
 }

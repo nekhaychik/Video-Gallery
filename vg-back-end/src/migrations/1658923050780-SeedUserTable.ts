@@ -1,11 +1,15 @@
-import { MigrationInterface, QueryRunner, getRepository } from 'typeorm';
+import { getRepository, MigrationInterface, QueryRunner } from 'typeorm';
+
+// Entities
 import { User } from '../entities/user/user.entity';
+
+// Seeds
 import { userSeed } from '../seeds/user.seed';
 
-export class SeedUserTable1651270465906 implements MigrationInterface {
+export class SeedUserTable1658923050780 implements MigrationInterface {
 
   public async up(queryRunner: QueryRunner): Promise<void> {
-    await getRepository(User).save(userSeed);
+    await getRepository(User).save(userSeed)
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

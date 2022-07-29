@@ -2,8 +2,8 @@ import SQLite from '../../configs/sqlite.config';
 import mockApi from '../../mocks/api.mock';
 import userController from './user.controller';
 
-let req: any;
-let res: any;
+let request: any;
+let response: any;
 
 beforeAll(async () => {
   await SQLite.instance.setup();
@@ -15,152 +15,152 @@ afterAll(() => {
 
 describe('Testing user controller', () => {
   beforeEach(() => {
-    req = mockApi.mockRequest();
-    res = mockApi.mockResponse();
+    request = mockApi.mockRequest();
+    response = mockApi.mockResponse();
   });
 
   afterEach(() => {
-    req = null;
-    res = null;
+    request = null;
+    response = null;
   });
 
   test('Create user', async () => {
-    req.body = {
+    request.body = {
       email: 'admin@gmail.com',
       password: 'password',
       firstName: 'First',
       lastName: 'Last',
-    }
-    await userController.create(req, res);
-    expect(res.status).toHaveBeenCalledWith(201);
+    };
+    await userController.create(request, response);
+    expect(response.status).toHaveBeenCalledWith(201);
   });
 
   test('Create duplicated user', async () => {
-    req.body = {
+    request.body = {
       email: 'admin@gmail.com',
       password: 'password',
       firstName: 'First',
       lastName: 'Last',
-    }
-    await userController.create(req, res);
-    expect(res.status).toHaveBeenCalledWith(409);
+    };
+    await userController.create(request, response);
+    expect(response.status).toHaveBeenCalledWith(409);
   });
 
   test('Create incorrect user', async () => {
-    await userController.create(req, res);
-    expect(res.status).toHaveBeenCalledWith(400);
+    await userController.create(request, response);
+    expect(response.status).toHaveBeenCalledWith(400);
   });
 
   test('User login', async () => {
-    req.body = {
+    request.body = {
       email: 'admin@gmail.com',
       password: 'password',
-    }
-    await userController.login(req, res);
-    expect(res.status).toHaveBeenCalledWith(200);
+    };
+    await userController.login(request, response);
+    expect(response.status).toHaveBeenCalledWith(200);
   });
 
   test('User login with wrong data', async () => {
-    req.body = {
+    request.body = {
       email: 'fake@gmail.com',
       password: 'password',
-    }
-    await userController.login(req, res);
-    expect(res.status).toHaveBeenCalledWith(400);
+    };
+    await userController.login(request, response);
+    expect(response.status).toHaveBeenCalledWith(400);
   });
 
   test('User login with empty data', async () => {
-    req.body = null;
-    await userController.login(req, res);
-    expect(res.status).toHaveBeenCalledWith(400);
+    request.body = null;
+    await userController.login(request, response);
+    expect(response.status).toHaveBeenCalledWith(400);
   });
 
   test('Get current user', async () => {
-    req.user = {
+    request.user = {
       id: 1,
-    }
-    await userController.me(req, res);
-    expect(res.status).toHaveBeenCalledWith(200);
+    };
+    await userController.me(request, response);
+    expect(response.status).toHaveBeenCalledWith(200);
   });
 
   test('Get user detail', async () => {
-    req.params = {
+    request.params = {
       id: 1,
-    }
-    await userController.detail(req, res);
-    expect(res.status).toHaveBeenCalledWith(200);
+    };
+    await userController.detail(request, response);
+    expect(response.status).toHaveBeenCalledWith(200);
   });
 
   test('Get user detail with wrong id', async () => {
-    req.params = {
+    request.params = {
       id: 100,
-    }
-    await userController.detail(req, res);
-    expect(res.status).toHaveBeenCalledWith(400);
+    };
+    await userController.detail(request, response);
+    expect(response.status).toHaveBeenCalledWith(400);
   });
 
   test('Update user', async () => {
-    req.body = {
+    request.body = {
       firstName: 'First',
       lastName: 'Last',
-    }
-    req.params = {
+    };
+    request.params = {
       id: 1,
-    }
-    await userController.update(req, res);
-    expect(res.status).toHaveBeenCalledWith(200);
+    };
+    await userController.update(request, response);
+    expect(response.status).toHaveBeenCalledWith(200);
   });
 
   test('Update user with wrong data', async () => {
-    req.body = null;
-    await userController.update(req, res);
-    expect(res.status).toHaveBeenCalledWith(400);
+    request.body = null;
+    await userController.update(request, response);
+    expect(response.status).toHaveBeenCalledWith(400);
   });
 
   test('Update current user', async () => {
-    req.body = {
+    request.body = {
       firstName: 'First',
       lastName: 'Last',
-    }
-    req.user = {
+    };
+    request.user = {
       id: 1,
-    }
-    await userController.updateMe(req, res);
-    expect(res.status).toHaveBeenCalledWith(200);
+    };
+    await userController.updateMe(request, response);
+    expect(response.status).toHaveBeenCalledWith(200);
   });
 
   test('Update current user with wrong data', async () => {
-    req.body = null;
-    await userController.updateMe(req, res);
-    expect(res.status).toHaveBeenCalledWith(400);
+    request.body = null;
+    await userController.updateMe(request, response);
+    expect(response.status).toHaveBeenCalledWith(400);
   });
 
   test('Get list users', async () => {
-    req.query = {
+    request.query = {
       limit: 5,
       page: 1,
-    }
-    await userController.list(req, res);
-    expect(res.status).toHaveBeenCalledWith(200);
+    };
+    await userController.list(request, response);
+    expect(response.status).toHaveBeenCalledWith(200);
   });
 
   test('Get list users with wrong query params', async () => {
-    req.query = null;
-    await userController.list(req, res);
-    expect(res.status).toHaveBeenCalledWith(400);
+    request.query = null;
+    await userController.list(request, response);
+    expect(response.status).toHaveBeenCalledWith(400);
   });
 
-  test('Remove a user', async () => {
-    req.params = {
+  test('Remove user', async () => {
+    request.params = {
       id: 1,
-    }
-    await userController.remove(req, res);
-    expect(res.status).toHaveBeenCalledWith(200);
+    };
+    await userController.remove(request, response);
+    expect(response.status).toHaveBeenCalledWith(200);
   });
 
-  test('Remove a wrong user', async () => {
-    req.params = null;
-    await userController.remove(req, res);
-    expect(res.status).toHaveBeenCalledWith(400);
+  test('Remove wrong user', async () => {
+    request.params = null;
+    await userController.remove(request, response);
+    expect(response.status).toHaveBeenCalledWith(400);
   });
 });

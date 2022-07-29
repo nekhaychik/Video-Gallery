@@ -6,6 +6,8 @@ export interface IBasicUser {
   email: string;
   firstName: string;
   lastName: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface ICreateUser {

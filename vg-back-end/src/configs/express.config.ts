@@ -8,6 +8,8 @@ import constants from '../constants';
 import indexRoute from '../routes/index.route';
 import joiErrorHandler from '../middlewares/joi-error-handler.middleware';
 import { notFoundErrorHandler, errorHandler } from '../middlewares/api-error-handler.middleware';
+import {multerUploader} from "../middlewares/video-handler.middleware";
+import Video from "../constants/video";
 
 const app = express();
 
@@ -30,7 +32,7 @@ const corsOption = {
   origin: [process.env.FRONTEND_BASE_URL],
   methods: 'GET,POST,HEAD,OPTIONS,PUT,PATCH,DELETE',
   credentials: true,
-}
+};
 
 app.use(cors(corsOption));
 
@@ -49,5 +51,8 @@ app.use(joiErrorHandler);
 // Error Handler
 app.use(notFoundErrorHandler);
 app.use(errorHandler);
+
+// Multer uploader
+app.use(multerUploader.single(Video.VIDEO_UPLOADER_NAME));
 
 export default app;

@@ -1,4 +1,6 @@
 import httpStatusCodes from 'http-status-codes';
+import IRequest from 'IRequest';
+import { Response } from 'express';
 
 // Interfaces
 import IController from '../../interfaces/IController';
@@ -20,8 +22,6 @@ import userService from '../../services/user/user.service';
 import ApiResponse from '../../utilities/api-response.utility';
 import Encryption from '../../utilities/encryption.utility';
 import ApiUtility from '../../utilities/api.utility';
-import IRequest from 'IRequest';
-import { Response } from 'express';
 
 // Constants
 import constants from '../../constants';
@@ -34,11 +34,11 @@ const create: IController = async (req: IRequest, res: Response) => {
       password: req.body.password,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
-    }
+    };
     const user: IBasicUser = await userService.create(params);
     return ApiResponse.result(res, user, httpStatusCodes.CREATED);
-  } catch (e: any) {
-    if (e.code === constants.ERROR_CODE.DUPLICATED || e.code === constants.ERROR_CODE.SQLITE_DUPLICATED) {
+  } catch (error: any) {
+    if (error.code === constants.ERROR_CODE.DUPLICATED || error.code === constants.ERROR_CODE.SQLITE_DUPLICATED) {
       return ApiResponse.error(res, httpStatusCodes.CONFLICT, 'Email already exists.');
     }
     return ApiResponse.error(res, httpStatusCodes.BAD_REQUEST);
@@ -50,13 +50,13 @@ const login: IController = async (req: IRequest, res: Response) => {
     const params: ILoginUser = {
       email: req.body.email,
       password: req.body.password,
-    }
+    };
     const user: IBasicUser = await userService.login(params);
     const cookie: ICookie = await generateUserCookie(user.id);
     return ApiResponse.result(res, user, httpStatusCodes.OK, cookie);
-  } catch (e: any) {
-    if (e instanceof StringError) {
-      return ApiResponse.error(res, httpStatusCodes.BAD_REQUEST, e.message);
+  } catch (error: any) {
+    if (error instanceof StringError) {
+      return ApiResponse.error(res, httpStatusCodes.BAD_REQUEST, error.message);
     }
     return ApiResponse.error(res, httpStatusCodes.BAD_REQUEST, 'Something went wrong');
   }
@@ -71,11 +71,11 @@ const detail: IController = async (req: IRequest, res: Response) => {
   try {
     const params: IDetailById = {
       id: parseInt(req.params.id, RADIX_TEN),
-    }
+    };
     const data: IBasicUser = await userService.detail(params);
     return ApiResponse.result(res, data, httpStatusCodes.OK);
-  } catch (e: any) {
-    ApiResponse.exception(res, e);
+  } catch (error: any) {
+    ApiResponse.exception(res, error);
   }
 };
 
@@ -85,11 +85,11 @@ const update: IController = async (req: IRequest, res: Response) => {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       id: parseInt(req.params.id, RADIX_TEN),
-    }
+    };
     await userService.update(params);
     return ApiResponse.result(res, params, httpStatusCodes.OK);
-  } catch (e: any) {
-    ApiResponse.exception(res, e);
+  } catch (error: any) {
+    ApiResponse.exception(res, error);
   }
 };
 
@@ -99,11 +99,11 @@ const updateMe: IController = async (req: IRequest, res: Response) => {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       id: req.user.id,
-    }
+    };
     await userService.update(params);
     return ApiResponse.result(res, params, httpStatusCodes.OK);
-  } catch (e: any) {
-    ApiResponse.exception(res, e);
+  } catch (error: any) {
+    ApiResponse.exception(res, error);
   }
 };
 
@@ -115,8 +115,8 @@ const list: IController = async (req: IRequest, res: Response) => {
     const params: IUserQueryParams = { limit, page, keyword };
     const data: { pagination: IPagination, response: IBasicUser[] } = await userService.list(params);
     return ApiResponse.result(res, data.response, httpStatusCodes.OK, null, data.pagination);
-  } catch (e: any) {
-    ApiResponse.exception(res, e);
+  } catch (error: any) {
+    ApiResponse.exception(res, error);
   }
 };
 
@@ -124,11 +124,11 @@ const remove: IController = async (req: IRequest, res: Response) => {
   try {
     const params: IDeleteById = {
       id: parseInt(req.params.id, RADIX_TEN),
-    }
+    };
     await userService.remove(params);
     return  ApiResponse.result(res, params, httpStatusCodes.OK);
-  } catch (e: any) {
-    ApiResponse.exception(res, e);
+  } catch (error: any) {
+    ApiResponse.exception(res, error);
   }
 };
 

@@ -8,13 +8,13 @@ import { ICookie, IPagination, IOverrideRequest } from 'common.interface';
 import { StringError } from '../errors/string.error';
 
 export default class ApiResponse {
-  static result = (
+  static result (
     res: Response,
     data: any,
     status: number = 200,
     cookie: ICookie = null,
     pagination: IPagination = null,
-  ) => {
+  ): void {
     res.status(status);
     if (cookie) {
       res.cookie(cookie.key, cookie.value);
@@ -29,12 +29,12 @@ export default class ApiResponse {
     res.json(responseData);
   };
 
-  static error = (
+  static error (
     res: Response,
     status: number = 400,
     error: string = httpStatusCodes.getStatusText(status),
     override: IOverrideRequest = null,
-  ) => {
+  ): void {
     res.status(status).json({
       override,
       error: {
@@ -44,11 +44,11 @@ export default class ApiResponse {
     });
   };
 
-  static setCookie = (res: Response, key: string, value: string) => {
+  static setCookie (res: Response, key: string, value: string): void {
     res.cookie(key, value);
   };
 
-  static exception(res: any, error: any): void {
+  static exception(res: Response, error: (Error | undefined)): void {
     if (error instanceof StringError) {
       return ApiResponse.error(res, httpStatusCodes.BAD_REQUEST, error.message);
     }

@@ -15,7 +15,7 @@ afterAll(() => {
 
 describe('Testing video controller', () => {
   beforeEach(() => {
-    request = mockApi.mockRequest();
+    request = mockApi.mockFileRequest();
     response = mockApi.mockResponse();
   });
 
@@ -25,7 +25,7 @@ describe('Testing video controller', () => {
   });
 
   test('Create video', async() => {
-    request.body = {
+    request.file = {
       path: 'videos/path/video.mp4',
     };
     await videoController.create(request, response);
@@ -80,6 +80,18 @@ describe('Testing video controller', () => {
   test('Remove video with wrong data', async() => {
     request.params = null;
     await videoController.remove(request, response);
+    expect(response.status).toHaveBeenCalledWith(400);
+  });
+
+  test('Get video by path', async() => {
+    request.body = { path: 'videos/path/video.mp4' };
+    await videoController.getByVideoPath(request, response);
+    expect(response.status).toHaveBeenCalledWith(200);
+  });
+
+  test('Get video by wrong path', async() => {
+    request.body = null;
+    await videoController.getByVideoPath(request, response);
     expect(response.status).toHaveBeenCalledWith(400);
   });
 });

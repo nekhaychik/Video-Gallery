@@ -13,7 +13,16 @@ const mockResponse = () => {
   return res;
 };
 
+const mockFileRequest = () => {
+  const req: any = {};
+  req.body = jest.fn().mockReturnValue(req);
+  req.file = jest.fn().mockReturnValue(req);
+  req.body = jest.fn().mockReturnValue(req);
+  return req;
+}
+
 export default {
   mockRequest,
   mockResponse,
+  mockFileRequest,
 }

@@ -5,8 +5,8 @@ export default {
     body: {
       email: joi.string().email().required(),
       password: joi.string().min(6).max(100).required(),
-      firstName: joi.string().min(2).max(100).required(),
-      lastName: joi.string().min(2).max(100).required(),
+      firstName: joi.string().min(2).max(255).required(),
+      lastName: joi.string().min(2).max(255).required(),
     },
   },
   login: {
@@ -17,8 +17,8 @@ export default {
   },
   updateMe: {
     body: {
-      firstName: joi.string().min(2).max(100).required(),
-      lastName: joi.string().min(2).max(100).required(),
+      firstName: joi.string().min(2).max(255).required(),
+      lastName: joi.string().min(2).max(255).required(),
     },
   },
 };

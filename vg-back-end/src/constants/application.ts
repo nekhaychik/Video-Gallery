@@ -1,4 +1,4 @@
-const basePath = '/';
+const basePath: string = '/';
 
 export default {
   url: {

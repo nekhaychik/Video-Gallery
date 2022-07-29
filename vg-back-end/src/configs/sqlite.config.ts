@@ -10,7 +10,7 @@ export default class SQLite {
       this.db = new SQLite();
     }
     return this.db;
-  }
+  };
 
   private dbConnection!: Connection;
   private sqliteDB!: any;
@@ -24,11 +24,11 @@ export default class SQLite {
       entities: ['src/entities/**/*.ts'],
       synchronize: true,
     });
-  }
+  };
 
   destroy(): void {
     this.dbConnection.close();
     this.sqliteDB.close();
-  }
+  };
 
 }

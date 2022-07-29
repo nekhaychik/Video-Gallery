@@ -27,17 +27,12 @@ export default class ApiUtility {
     return null;
   }
 
-  // static sanitizeData(data: BaseEntity): {} {
-  //   const { createdAt, updatedAt, ...basicData }  = data;
-  //   return basicData;
-  // }
-
   static sanitizeUser(user: User): IBasicUser {
     const { password, isDeleted, ...basicUser } = user;
     return basicUser;
   }
 
-  static getQueryParam(req: any, type: string) {
+  static getQueryParam(req: any, type: string): any {
     if (req && type && type !== '') {
       switch (type) {
         case 'limit': {
