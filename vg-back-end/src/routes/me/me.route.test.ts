@@ -2,7 +2,7 @@ import request, { CallbackHandler } from 'supertest';
 import routes from './me.route';
 import app from '../../configs/express.config';
 import SQLite from '../../configs/sqlite.config';
-import userService from '../../services/user/user.service';
+import userService from '../../modules/user/service/user.service';
 import Encryption from '../../utilities/encryption.utility';
 import constants from '../../constants';
 

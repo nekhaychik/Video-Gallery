@@ -3,28 +3,29 @@ import IRequest from 'IRequest';
 import { Response } from 'express';
 
 // Interfaces
-import IController from '../../interfaces/IController';
+import IController from 'IController';
 import {
   IBasicUser,
   ICreateUser,
   ILoginUser,
   IUpdateUser, IUserQueryParams,
-} from 'user.interface';
+} from '../interface/user.interface';
 import { ICookie, IDeleteById, IDetailById, IPagination } from 'common.interface';
 
 // Errors
-import { StringError } from '../../errors/string.error';
+import { StringError } from '../../../errors/string.error';
 
 // Services
-import userService from '../../services/user/user.service';
+import userService from '../service/user.service';
 
 // Utilities
-import ApiResponse from '../../utilities/api-response.utility';
-import Encryption from '../../utilities/encryption.utility';
-import ApiUtility from '../../utilities/api.utility';
+import ApiResponse from '../../../utilities/api-response.utility';
+import Encryption from '../../../utilities/encryption.utility';
+import ApiUtility from '../../../utilities/api.utility';
 
 // Constants
-import constants from '../../constants';
+import constants from '../../../constants';
+import passport from 'passport';
 const RADIX_TEN: number = 10;
 
 const create: IController = async (req: IRequest, res: Response) => {
@@ -44,6 +45,7 @@ const create: IController = async (req: IRequest, res: Response) => {
     return ApiResponse.error(res, httpStatusCodes.BAD_REQUEST);
   }
 };
+
 
 const login: IController = async (req: IRequest, res: Response) => {
   try {

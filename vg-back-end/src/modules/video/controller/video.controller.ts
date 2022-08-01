@@ -3,10 +3,10 @@ import IRequest from 'IRequest';
 import { Response } from 'express';
 
 // Entities
-import { Video } from '../../entities/video/video.entity';
+import { Video } from '../entity/video.entity';
 
 // Interfaces
-import IController from '../../interfaces/IController';
+import IController from 'IController';
 import {
   IAccessParams,
   IBasicVideo,
@@ -14,21 +14,29 @@ import {
   IDeleteVideoById,
   IDetailByPath,
   IVideoQueryParams,
-} from 'video.interface';
+} from '../interface/video.interface';
 import { IPagination } from 'common.interface';
 
 // Services
-import videoService from '../../services/video/video.service';
+import videoService from '../service/video.service';
 
 // Utilities
-import ApiResponse from '../../utilities/api-response.utility';
-import ApiUtility from '../../utilities/api.utility';
+import ApiResponse from '../../../utilities/api-response.utility';
+import ApiUtility from '../../../utilities/api.utility';
+import {StringError} from "../../../errors/string.error";
 
 // Constants
 const RADIX_TEN: number = 10;
 
 const create: IController = async (req: IRequest, res: Response) => {
   try {
+
+    const file = req.file;
+    if (!file) {
+      throw new StringError('Please upload a video')
+    }
+    res.send(file)
+
     const params: ICreateVideo = {
       path: req.file.path, // req.body.path
       authorId: req.user.id,

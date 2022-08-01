@@ -1,5 +1,5 @@
-import SQLite from '../../configs/sqlite.config';
-import mockApi from '../../mocks/api.mock';
+import SQLite from '../../../configs/sqlite.config';
+import mockApi from '../../../mocks/api.mock';
 import userController from './user.controller';
 
 let request: any;

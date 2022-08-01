@@ -6,13 +6,13 @@ import {
 } from 'typeorm';
 
 // Entities
-import { Video } from '../../entities/video/video.entity';
-import { User } from '../../entities/user/user.entity';
-import { VideoUser } from '../../entities/video_user/video_user.entity';
+import { Video } from '../entity/video.entity';
+import { User } from '../../user/entities/user.entity';
+import { VideoUser } from '../../../entities/video_user/video_user.entity';
 
 // Utilities
-import ApiUtility from '../../utilities/api.utility';
-import DateTimeUtility from '../../utilities/date-time.utility';
+import ApiUtility from '../../../utilities/api.utility';
+import DateTimeUtility from '../../../utilities/date-time.utility';
 
 // Interfaces
 import {
@@ -23,7 +23,7 @@ import {
   IDetailByPath,
   IDetailVideoById,
   IVideoQueryParams,
-} from 'video.interface';
+} from '../interface/video.interface';
 import {
   IUpdateById,
   IDeleteById,
@@ -32,7 +32,7 @@ import {
 } from 'common.interface';
 
 // Errors
-import { StringError } from '../../errors/string.error';
+import { StringError } from '../../../errors/string.error';
 
 async function create(params: ICreateVideo): Promise<Video> {
   const item: Video = new Video();

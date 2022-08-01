@@ -3,13 +3,18 @@ import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 
+// Middlewares
 import authenticate from '../middlewares/authenticate.middleware';
-import constants from '../constants';
-import indexRoute from '../routes/index.route';
 import joiErrorHandler from '../middlewares/joi-error-handler.middleware';
 import { notFoundErrorHandler, errorHandler } from '../middlewares/api-error-handler.middleware';
-import {multerUploader} from "../middlewares/video-handler.middleware";
-import Video from "../constants/video";
+import { multerUploader } from '../middlewares/video-handler.middleware';
+
+// Constants
+import constants from '../constants';
+
+// Routes
+import indexRoute from '../routes/index.route';
+import Video from '../constants/video';
 
 const app = express();
 

@@ -6,8 +6,8 @@ import {
 } from 'typeorm';
 
 // Entities
-import { BaseEntity } from '../base/base.entity';
-import { User } from '../user/user.entity';
+import { BaseEntity } from '../../../entities/base/base.entity';
+import { User } from '../../user/entities/user.entity';
 
 @Entity('video', {})
 export class Video extends BaseEntity {

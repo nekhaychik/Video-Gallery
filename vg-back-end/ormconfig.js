@@ -10,7 +10,7 @@ module.exports = {
   charset: 'utf8',
   driver: 'mysql',
   synchronize: false,
-  entities: process.env.NODE_ENV !== 'production' ? ['**/**.entity.ts'] : ['dist/**/*.entity.js'],
+  entities: process.env.NODE_ENV !== 'production' ? ['**/**.entities.ts'] : ['dist/**/*.entities.js'],
   logging: process.env.NODE_ENV !== 'production' ? 'all' : 'error',
   migrations: ['src/migrations/*.ts'],
   cli: {

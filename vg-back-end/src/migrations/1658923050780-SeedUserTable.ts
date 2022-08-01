@@ -1,10 +1,10 @@
 import { getRepository, MigrationInterface, QueryRunner } from 'typeorm';
 
 // Entities
-import { User } from '../entities/user/user.entity';
+import { User } from '../modules/user/entities/user.entity';
 
 // Seeds
-import { userSeed } from '../seeds/user.seed';
+import { userSeed } from '../modules/user/seeds/user.seed';
 
 export class SeedUserTable1658923050780 implements MigrationInterface {
 

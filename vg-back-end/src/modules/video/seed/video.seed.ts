@@ -1,6 +1,6 @@
 import {DeepPartial, getRepository} from "typeorm";
-import {User} from '../entities/user/user.entity';
-import {Video} from '../entities/video/video.entity';
+import {User} from '../../user/entities/user.entity';
+import {Video} from '../entity/video.entity';
 
 // @ts-ignore
 async function getAuthor(): User {

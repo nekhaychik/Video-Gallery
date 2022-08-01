@@ -1,10 +1,10 @@
 import { getRepository, MigrationInterface, QueryRunner } from 'typeorm';
 
 // Entities
-import { Role } from '../entities/role/role.entity';
+import { Role } from '../modules/user/entities/role.entity';
 
 // Seeds
-import { roleSeed } from '../seeds/role.seed';
+import { roleSeed } from '../modules/user/seeds/role.seed';
 
 export class SeedRoleTable1658919404758 implements MigrationInterface {
 

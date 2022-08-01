@@ -1,4 +1,4 @@
-import SQLite from '../../configs/sqlite.config';
+import SQLite from '../../../configs/sqlite.config';
 import userService from './user.service';
 
 let user: any;

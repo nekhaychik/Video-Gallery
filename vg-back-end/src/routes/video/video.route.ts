@@ -1,15 +1,18 @@
 import express from 'express';
 
 // Controller
-import videoController from '../../controllers/video/video.controller';
+import videoController from '../../modules/video/controller/video.controller';
 
 // Middleware
 import { isAdmin } from '../../middlewares/permission-handler.middleware';
+import { multerUploader } from '../../middlewares/video-handler.middleware';
+import Video from '../../constants/video';
 
 const router = express.Router();
 
 router.post(
   '/',
+  multerUploader.single(Video.VIDEO_UPLOADER_NAME),
   videoController.create,
 );
 

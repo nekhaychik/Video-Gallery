@@ -1,12 +1,12 @@
 import { getRepository, SelectQueryBuilder, UpdateResult } from 'typeorm';
 
 // Entities
-import { User } from '../../entities/user/user.entity';
+import { User } from '../entities/user.entity';
 
 // Utilities
-import Encryption from '../../utilities/encryption.utility';
-import ApiUtility from '../../utilities/api.utility';
-import DateTimeUtility from '../../utilities/date-time.utility';
+import Encryption from '../../../utilities/encryption.utility';
+import ApiUtility from '../../../utilities/api.utility';
+import DateTimeUtility from '../../../utilities/date-time.utility';
 
 // Interfaces
 import {
@@ -15,11 +15,11 @@ import {
   ILoginUser,
   IUpdateUser,
   IUserQueryParams,
-} from 'user.interface';
+} from '../interface/user.interface';
 import { IDeleteById, IDetailById, IPagination } from 'common.interface';
 
 // Errors
-import { StringError } from '../../errors/string.error';
+import { StringError } from '../../../errors/string.error';
 
 const WHERE: { isDeleted: boolean } = { isDeleted: false };
 const SALT_ROUND_TEN: number = 10;

@@ -2,7 +2,7 @@ import express from 'express';
 import httpStatusCodes from 'http-status-codes';
 
 // Services
-import userService from '../services/user/user.service';
+import userService from '../modules/user/service/user.service';
 
 // Interfaces
 import IRequest from '../interfaces/IRequest';

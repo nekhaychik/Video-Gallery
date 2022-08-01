@@ -3,6 +3,7 @@ import multer, { FileFilterCallback } from 'multer'
 
 // Utilities
 import DateTimeUtility from '../utilities/date-time.utility';
+import * as path from 'path';
 
 type DestinationCallback = (error: Error | null, destination: string) => void
 type FileNameCallback = (error: Error | null, filename: string) => void
@@ -13,7 +14,7 @@ export const fileStorage = multer.diskStorage({
       file: Express.Multer.File,
       callback: DestinationCallback,
   ): void => {
-    callback(null, '/videos');
+    callback(null, path.join(__dirname, '/videos/'));
   },
 
   filename: (

@@ -1,8 +1,8 @@
-import SQLite from '../../configs/sqlite.config';
+import SQLite from '../../../configs/sqlite.config';
 
 // Services
 import videoService from './video.service';
-import userService from '../user/user.service';
+import userService from '../../user/service/user.service';
 
 let video: any;
 let user: any;

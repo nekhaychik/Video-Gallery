@@ -7,8 +7,8 @@ import {
 } from 'typeorm';
 
 // Entities
-import { BaseEntity } from '../base/base.entity';
-import { Role } from '../role/role.entity';
+import { BaseEntity } from '../../../entities/base/base.entity';
+import { Role } from './role.entity';
 
 @Entity('user', { orderBy: { id: 'DESC' } })
 export class User extends BaseEntity {
