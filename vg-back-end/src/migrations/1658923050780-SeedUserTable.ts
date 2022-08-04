@@ -1,7 +1,7 @@
 import { getRepository, MigrationInterface, QueryRunner } from 'typeorm';
 
 // Entities
-import { User } from '../modules/user/entities/user.entity';
+import { User } from '../entities/user/user.entity';
 
 // Seeds
 import { userSeed } from '../modules/user/seeds/user.seed';

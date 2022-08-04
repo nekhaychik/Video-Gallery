@@ -1,7 +1,7 @@
 import { getRepository, MigrationInterface, QueryRunner } from 'typeorm';
 
 // Entities
-import { Video } from '../modules/video/entity/video.entity';
+import { Video } from '../entities/video/video.entity';
 
 // Seeds
 import { videoSeed } from '../modules/video/seed/video.seed';

@@ -9,7 +9,7 @@ import IRequest from '../interfaces/IRequest';
 import ApiResponse from '../utilities/api-response.utility';
 
 // Entity
-import { Role } from '../modules/user/entities/role.entity';
+import { Role } from '../entities/role/role.entity';
 
 export const isAdmin = () => {
   return async (req: IRequest, res: express.Response, next: express.NextFunction) => {

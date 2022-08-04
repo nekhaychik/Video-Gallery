@@ -1,7 +1,7 @@
 import { getRepository, MigrationInterface, QueryRunner } from 'typeorm';
 
 // Entities
-import { Role } from '../modules/user/entities/role.entity';
+import { Role } from '../entities/role/role.entity';
 
 // Seeds
 import { roleSeed } from '../modules/user/seeds/role.seed';

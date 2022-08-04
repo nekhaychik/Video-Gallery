@@ -25,7 +25,6 @@ import ApiUtility from '../../../utilities/api.utility';
 
 // Constants
 import constants from '../../../constants';
-import passport from 'passport';
 const RADIX_TEN: number = 10;
 
 const create: IController = async (req: IRequest, res: Response) => {
@@ -60,6 +59,7 @@ const login: IController = async (req: IRequest, res: Response) => {
     if (error instanceof StringError) {
       return ApiResponse.error(res, httpStatusCodes.BAD_REQUEST, error.message);
     }
+    console.log(error);
     return ApiResponse.error(res, httpStatusCodes.BAD_REQUEST, 'Something went wrong');
   }
 };

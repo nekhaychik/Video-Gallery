@@ -3,7 +3,7 @@ import IRequest from 'IRequest';
 import { Response } from 'express';
 
 // Entities
-import { Video } from '../entity/video.entity';
+import { Video } from '../../../entities/video/video.entity';
 
 // Interfaces
 import IController from 'IController';

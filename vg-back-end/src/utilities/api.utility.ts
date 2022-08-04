@@ -1,7 +1,7 @@
 import { Request } from 'express';
 
 // Entities
-import { User } from '../modules/user/entities/user.entity';
+import { User } from '../entities/user/user.entity';
 
 // Interfaces
 import { IPagination } from 'common.interface';

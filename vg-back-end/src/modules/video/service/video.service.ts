@@ -6,8 +6,8 @@ import {
 } from 'typeorm';
 
 // Entities
-import { Video } from '../entity/video.entity';
-import { User } from '../../user/entities/user.entity';
+import { Video } from '../../../entities/video/video.entity';
+import { User } from '../../../entities/user/user.entity';
 import { VideoUser } from '../../../entities/video_user/video_user.entity';
 
 // Utilities

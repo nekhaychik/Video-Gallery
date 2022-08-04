@@ -1,7 +1,7 @@
 import { getRepository, SelectQueryBuilder, UpdateResult } from 'typeorm';
 
 // Entities
-import { User } from '../entities/user.entity';
+import { User } from '../../../entities/user/user.entity';
 
 // Utilities
 import Encryption from '../../../utilities/encryption.utility';
