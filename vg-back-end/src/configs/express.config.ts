@@ -3,6 +3,11 @@ import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 
+import { swaggerDocs } from '../configs/swagger';
+import * as swaggerUi from 'swagger-ui-express';
+
+import passport from './passport';
+
 // Middlewares
 import authenticate from '../middlewares/authenticate.middleware';
 import joiErrorHandler from '../middlewares/joi-error-handler.middleware';
@@ -59,5 +64,12 @@ app.use(errorHandler);
 
 // Multer uploader
 app.use(multerUploader.single(Video.VIDEO_UPLOADER_NAME));
+
+// Swagger
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
+// Passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 export default app;
