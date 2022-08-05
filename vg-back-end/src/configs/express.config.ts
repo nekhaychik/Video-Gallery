@@ -2,10 +2,6 @@ import * as bodyParser from 'body-parser';
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
-
-import { swaggerDocs } from '../configs/swagger';
-import * as swaggerUi from 'swagger-ui-express';
-
 import passport from './passport';
 
 // Middlewares
@@ -64,9 +60,6 @@ app.use(errorHandler);
 
 // Multer uploader
 app.use(multerUploader.single(Video.VIDEO_UPLOADER_NAME));
-
-// Swagger
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 // Passport
 app.use(passport.initialize());
